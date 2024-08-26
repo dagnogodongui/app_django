@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+  </head>
+  <body>
+    <div class="sidebar">
+      <h2>Mon Etab</h2>
+      <hr />
+      <ul>
+        <li>
+          <a href="{% url "dashboad:index" %}"
+            ><i class="fas fa-tachometer-alt"></i> Tableau de bord</a
+          >
+        </li>
+        <li class="active">
+          <a href="{% url "eleve:index" %}"><i class="fas fa-user-graduate"></i> Élèves</a>
+        </li>
+        <li>
+          <a href="{% url "professeur:index" %}"
+            ><i class="fas fa-chalkboard-teacher"></i> Professeurs</a
+          >
+        </li>
+        <li>
+          <a href="{% url "utilisateur:index" %}"
+            ><i class="fas fa-chalkboard-teacher"></i> Utilisateur</a
+          >
+        </li>
+        <li>
+          <a href="{% url "rapport:index" %}"><i class="fas fa-chart-line"></i> Rapport</a>
+        </li>
+      </ul>
+      <hr style="margin-top: 270px" />
+      <ul>
+        <li>
+          <a href="{% url "dashboad:connexion" %}"
+            ><i class="fas fa-sign-out-alt"></i> Déconnexion</a
+          >
+        </li>
+      </ul>
+    </div>
+  
+    {% block modifier %}{% endblock %}
+  </body>
+</html>
