@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+  </head>
+  <body>
+    <div class="sidebar">
+      <h2>Mon Etab</h2>
+      <hr />
+      <ul>
+        <li>
+          <a href="{% url "dashboard:index" %}"
+            ><i class="fas fa-tachometer-alt"></i> Tableau de bord</a
+          >
+        </li>
+        <li class="active">
+          <a href="{% url "student:index" %}"><i class="fas fa-user-graduate"></i> user</a>
+        </li>
+        <li>
+          <a href="{% url "teacher:index" %}"
+            ><i class="fas fa-chalkboard-teacher"></i> teacher</a
+          >
+        </li>
+        <li>
+          <a href="{% url "user:index" %}"
+            ><i class="fas fa-chalkboard-teacher"></i> User</a
+          >
+        </li>
+        <li>
+          <a href="{% url "report:index" %}"><i class="fas fa-chart-line"></i> Report</a>
+        </li>
+      </ul>
+      <hr style="margin-top: 270px" />
+      <ul>
+        <li>
+          <a href="{% url "dashboard:login" %}"
+            ><i class="fas fa-sign-out-alt"></i> sign out</a
+          >
+        </li>
+      </ul>
+    </div>
+  
+    {% block modifier %}{% endblock %}
+  </body>
+</html>

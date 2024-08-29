@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mon Etab - Tableau de bord</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <script
+  src="https://code.jquery.com/jquery-3.7.1.js"
+  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+  crossorigin="anonymous"></script>
+    {% comment %} <script src="{% static 'js/script.js'%}" defer> </script> {% endcomment %}
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    
+
+  </head>
+  <body>
+    <div class="sidebar">
+      <h2>Mon Etab</h2>
+      <hr />
+      <ul>
+        <li>
+          <a href="{% url "dashboard:index" %}"
+            ><i class="fas fa-tachometer-alt"></i> dDa</a
+          >
+        </li>
+        <li class="active">
+          <a href="{% url "student:index" %}"><i class="fas fa-user-graduate"></i> student</a>
+        </li>
+        <li>
+          <a href="{% url "teacher:index" %}"
+            ><i class="fas fa-chalkboard-teacher"></i> teacher</a
+          >
+        </li>
+        <li>
+          <a href="{% url "user:index" %}"
+            ><i class="fas fa-chalkboard-teacher"></i> user</a
+          >
+        </li>
+        <li>
+          <a href="{% url "report:index" %}"><i class="fas fa-chart-line"></i> report</a>
+        </li>
+      </ul>
+      <hr style="margin-top: 270px" />
+      <ul>
+        <li>
+          <a href="{% url "dashboard:login" %}"
+            ><i class="fas fa-sign-out-alt"></i> sign out</a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="content1">
+      <div class="back-button">
+        <h1 style="color: black"> student List </h1>
+        <a href="{% url "student:add" %}"
+          ><i class="fas fa-arrow-left"></i>New student</a
+        >
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>last_name</th>
+            <th>sex</th>
+            <th>matricule</th>
+            <th>birthday</th>
+            <th>status</th>
+            <th>phone</th>
+            <th>city</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+  
+        <tbody>
+          {% for student in elf %}
+          <tr>
+            <td>{{  student.name }}</td>
+            <td>{{  student.last_name }}</td>
+            <td>{{  student.sex }}</td>
+            <td>{{  student.matricule }}</td>
+            <td>{{  student.birthday }}</td>
+            <td>{{  student.status}}</td>
+            <td>{{  student.phone }}</td>
+            <td>{{  student.city }}</td>
+            <td>
+              <a style="background-color: rgba(255, 217, 0, 0.897)" href="{% url 'student:edit' student.id %}">
+                         
+                edit
+            </a>
+            <button style="background-color: rgba(255, 217, 0, 0.897)" class="delete-icon" data-id="{{ student.id }}">
+    delete
+</button>
+
+
+            </td>
+          </tr>
+          
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="popup0" id="confirmationPopup">
+      <div class="confirmation-container">
+        <h2>Êtes-vous sûr de vouloir supprimer cet élève ?</h2>
+        <form id="deleteForm" method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn-confirm">comfirm</button>
+    <button type="button" class="btn-cancel" onclick="closePopup()">cancel</button>
+</form>
+      </div>
+    </div>
+
+    
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+    const deleteIcons = document.querySelectorAll(".delete-icon");
+    const popup = document.getElementById("confirmationPopup");
+    const deleteForm = document.getElementById("deleteForm");
+
+    deleteIcons.forEach(icon => {
+        icon.addEventListener("click", function () {
+            const id = this.getAttribute("data-id");
+            deleteForm.action = `/student/delete/${id}/`;  // Ajout d'un slash final ici
+            popup.style.display = "flex";
+        });
+    });
+});
+
+function closePopup() {
+    document.getElementById("confirmationPopup").style.display = "none";
+}
+
+    </script>
+    <script src="{% static 'js/script.js'%}" defer> </script>
+  </body>
+</html>

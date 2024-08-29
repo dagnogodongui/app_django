@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="sidebar">
+      <h2>Mon Etab</h2>
+      <hr />
+      <ul>
+        <li>
+          <a href="dashboard.html"
+            ><i class="fas fa-tachometer-alt"></i> dashboard ,</a
+          >
+        </li>
+        <li class="active">
+          <a href="student.html"
+            ><i class="fas fa-user-graduate"></i> student</a
+          >
+        </li>
+        <li>
+          <a href="teacher.html"
+            ><i class="fas fa-chalkboard-teacher"></i> teacher</a
+          >
+        </li>
+        <li>
+          <a href="user.html"><i class="fas fa-chalkboard-teacher"></i> User</a>
+        </li>
+        <li>
+          <a href="report.html"><i class="fas fa-chart-line"></i> Report</a>
+        </li>
+      </ul>
+      <hr style="margin-top: 270px" />
+      <ul>
+        <li>
+          <a href="index.html"><i class="fas fa-sign-out-alt"></i> sign out</a>
+        </li>
+      </ul>
+    </div>
+    {% block modifier %}{% endblock %}
+  </body>
+</html>

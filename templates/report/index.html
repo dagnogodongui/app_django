@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Report</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    
+    <script src={% static 'js/script.js'%} defer> </script>
+  
+  </head>
+  <body>
+   <div class="sidebar">
+   
+      <hr />
+      <ul>
+        <li>
+          <a href="{% url "dashboard:index" %}"
+            ><i class="fas fa-tachometer-alt"></i> Tableau de bord</a
+          >
+        </li>
+        <li class="active">
+          <a href="{% url "student:index" %}"><i class="fas fa-user-graduate"></i> student</a>
+        </li>
+        <li>
+          <a href="{% url "teacher:index" %}"
+            ><i class="fas fa-chalkboard-teacher"></i> teacher</a
+          >
+        </li>
+        <li>
+          <a href="{% url "user:index" %}"
+            ><i class="fas fa-chalkboard-teacher"></i> user</a
+          >
+        </li>
+        <li>
+          <a href="{% url "report:index" %}"><i class="fas fa-chart-line"></i> Report</a>
+        </li>
+      </ul>
+      <hr style="margin-top: 270px" />
+      <ul>
+        <li>
+          <a href="{% url "dashboard:login" %}"
+            ><i class="fas fa-sign-out-alt"></i> sign out</a
+          >
+        </li>
+      </ul>
+    </div>
+
+    <div class="content">
+       <h1>Report</h1>
+      <div class="back-button" style="justify-content: flex-end">
+        <a href="{% url "dashboard:index" %}"><i class="fas fa-arrow-left"></i> Return</a>
+      </div>
+
+      <div class="form-container">
+        
+
+        <div class="form-group">
+          <select id="classe" name="classe">
+            <option value="" disabled selected>Select an option</option>
+            <option value="liste des élèves">student list</option>
+            <option value="liste des professeurs">teacher liste </option>
+            <option value="liste des utilisateurs">
+              user list
+            </option>
+          </select>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn-cancel" onclick="confirmCancel()">
+            Generate format PDF
+          </button>
+          <button class="btn-save" onclick="confirmCancel()">
+            Generate format Excel
+          </button>
+        </div>
+      </div>
+    </div>
+    {% comment %}
+    <script src="{% static 'js/script.js'%}" />
+    {% endcomment %}
+  </body>
+</html>
